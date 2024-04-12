@@ -10,6 +10,7 @@ import {
   FaTrashCan,
 } from "react-icons/fa6";
 
+import { GoLaw } from "react-icons/go";
 import { MdHistory } from "react-icons/md";
 import Alert from "./Alert";
 import Notes from "./Notes";
@@ -19,6 +20,7 @@ function CalculatorApp() {
   const [isError, setError] = useState(false);
   const [isNoteOpen, setIsNoteOpen] = useState(false);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const [dataHistory, setDataHistory] = useState("");
   const handleInsert = (num) => {
     setCount(count + num);
   };
@@ -31,9 +33,21 @@ function CalculatorApp() {
   };
   const handleBawon = () => {
     try {
-      setCount(Math.round(count / 5));
+      const result = Math.round(count / 5);
+      const timbangan = count;
+      const data = {
+        timbangan,
+        bawon: result,
+      };
+
+      if (dataHistory) {
+        console.log(dataHistory);
+      } else {
+        localStorage.setItem("history-timbangan", JSON.stringify(data));
+      }
+      setCount(result);
     } catch (e) {
-      alert("Massukan input yang benar!");
+      alert("Terdapat gangguan, coba lagi!");
     }
   };
 
@@ -43,16 +57,24 @@ function CalculatorApp() {
         setError(false);
       }, 3000);
     }
+    const data = localStorage.getItem("history-timbangan");
+    const res = JSON.parse(data);
+    setDataHistory(res);
+    console.log(dataHistory);
+    console.log(res);
   }, [isError]);
 
   return (
     <>
       {isNoteOpen && <Notes handleCloseNotes={() => setIsNoteOpen(false)} />}
       {isHistoryOpen && (
-        <History handleCloseNotes={() => setIsHistoryOpen(false)} />
+        <History
+          handleCloseNotes={() => setIsHistoryOpen(false)}
+          data={dataHistory}
+        />
       )}
+      {isError && <Alert />}
       <div className="w-[24rem] p-5 bg-slate-200 rounded-xl">
-        {isError && <Alert />}
         <input
           className="w-full p-5 rounded-lg bg-white"
           readOnly
@@ -188,7 +210,11 @@ function CalculatorApp() {
           </div>
           <div className="w-full bg-slate-300 p-3 box-border rounded-xl">
             <Button
-              text={"Bawon"}
+              text={
+                <span className="flex items-center gap-3">
+                  <GoLaw /> Bawon
+                </span>
+              }
               onClick={handleBawon}
               disable={typeof count === "number" ? false : true}
               addStyle={"bg-white text-slate-500 w-full text-green-500"}

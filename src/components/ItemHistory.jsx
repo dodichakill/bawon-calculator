@@ -4,13 +4,13 @@ import { GoLaw } from "react-icons/go";
 
 function ItemHistory({ timbangan, bawon }) {
   return (
-    <div className="w-full my-3 bg-slate-200 text-slate-500 p-3 rounded-md">
+    <div className="w-full flex items-center justify-between my-3 bg-slate-200 text-slate-500 p-3 rounded-md">
       <div className="flex items-center gap-2">
-        <GoLaw /> <span>{timbangan}</span>
+        <GoLaw /> : <span>{timbangan}</span>
       </div>
 
       <div className="flex items-center gap-2">
-        <BsFillAwardFill /> <span>{bawon}</span>
+        <BsFillAwardFill /> : <span>{bawon}</span>
       </div>
     </div>
   );

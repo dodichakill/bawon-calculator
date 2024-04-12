@@ -5,7 +5,7 @@ import { FaGithubSquare } from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className="flex items-center justify-between p-3 gap-2">
+    <footer className="flex max-w-xl m-auto items-center justify-between p-3 gap-2">
       <div className="flex">
         <FaCalculator className="text-5xl text-slate-400" />
         <div className="flex flex-col text-slate-400 font-medium">
