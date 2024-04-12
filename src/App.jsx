@@ -48,27 +48,27 @@ function App() {
               <Button
                 text={<FaTrashCan />}
                 onClick={() => setCount("")}
-                addStyle={"bg-red-500"}
+                addStyle={"bg-red-500 text-white"}
               />
               <Button
                 text={"X"}
                 onClick={() => insert("*")}
-                addStyle={"bg-green-500"}
+                addStyle={"bg-green-500 text-white"}
               />
               <Button
                 text={<FaDivide />}
                 onClick={() => insert("/")}
-                addStyle={"bg-green-500"}
+                addStyle={"bg-green-500 text-white"}
               />
               <Button
                 text={<FaMinus />}
                 onClick={() => insert("-")}
-                addStyle={"bg-green-500"}
+                addStyle={"bg-green-500 text-white"}
               />
               <Button
                 text={<FaArrowLeft />}
                 onClick={() => setCount(count.slice(0, -1))}
-                addStyle={"bg-yellow-500"}
+                addStyle={"bg-yellow-500 text-white"}
               />
             </div>
             <div className="flex gap-2 mb-3">
@@ -95,7 +95,7 @@ function App() {
               <Button
                 text={"+"}
                 onClick={() => insert("+")}
-                addStyle={"bg-green-500"}
+                addStyle={"bg-green-500 text-white"}
               />
             </div>
             <div className="flex box-border">
@@ -149,7 +149,7 @@ function App() {
                 <Button
                   text={"="}
                   onClick={handleEqual}
-                  addStyle={"bg-blue-500 w-[3.7rem] h-full"}
+                  addStyle={"bg-blue-500 w-[3.7rem] h-full text-white"}
                 />
               </div>
             </div>
